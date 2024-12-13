@@ -1,11 +1,11 @@
-variable "enable_domain" {
-  type    = bool
-  default = true
-}
-
 variable "domain_name" {
   type        = string
   description = "Domain name to configure in SES"
+}
+
+variable "enable_domain" {
+  type    = bool
+  default = true
 }
 
 variable "enable_templates" {
