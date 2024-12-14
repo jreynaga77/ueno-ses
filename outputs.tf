@@ -9,7 +9,7 @@ output "dkim_tokens" {
 
 # Outputs relacionados con direcciones de correo
 output "email_identities" {
-  value = aws_ses_email_identity.emails[*].identity
+  value = aws_ses_email_identity.emails[0].identity
 }
 
 # Outputs relacionados con plantillas
