@@ -3,10 +3,10 @@ resource "aws_ses_domain_identity" "domain" {
   domain = var.domain_name
 }
 
-resource "aws_ses_email_template" "template" {
+resource "aws_ses_template" "template" {
   count          = var.enable_templates ? 1 : 0
-  template_name  = var.template_name
-  html_part      = var.template_html
-  text_part      = var.template_text
-  subject_part   = var.template_subject
+  name           = var.template_name
+  html           = var.template_html
+  text           = var.template_text
+  subject        = var.template_subject
 }
