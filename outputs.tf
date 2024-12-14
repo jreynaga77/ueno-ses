@@ -9,7 +9,7 @@ output "dkim_tokens" {
 
 # Outputs relacionados con direcciones de correo
 output "email_identities" {
-  value = aws_ses_email_identity.emails[*].email
+  value = aws_ses_email_identity.emails[*].email_identity
 }
 
 # Outputs relacionados con plantillas
@@ -18,5 +18,5 @@ output "template_name" {
 }
 
 output "templates" {
-  value = aws_ses_template.templates[*].name
+  value = [for t in aws_ses_template.templates : t.name]
 }
