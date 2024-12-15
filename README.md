@@ -20,7 +20,7 @@ To use this module, include the following block of code in your Terraform config
 
 ```hcl
 module "ses" {
-  source = "github.com/jreynaga77/ueno-ses"  # Verifica que la URL del repositorio esté correcta
+  source = "github.com/jreynaga77/ueno-ses" 
   
   domain_name        = "example2.com"        
   enable_domain      = true                 
