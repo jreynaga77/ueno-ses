@@ -4,34 +4,33 @@
 
 ### Description
 
-Este módulo de Terraform está diseñado para configurar el servicio Amazon Simple Email Service (SES) en AWS. Permite la verificación de dominios, la configuración de direcciones de correo electrónico y la creación de plantillas de correo electrónico. Con este módulo, puedes integrar fácilmente el envío de correos electrónicos desde tu dominio y gestionar plantillas para correos electrónicos transaccionales.
+This Terraform module is designed to configure the Amazon Simple Email Service (SES) on AWS. It allows for domain verification, email address configuration, and the creation of email templates. With this module, you can easily integrate email sending from your domain and manage templates for transactional emails.
 
 ### Prerequisites & Dependencies
 
-Antes de usar este módulo, asegúrate de tener lo siguiente configurado:
+Before using this module, ensure the following are configured:
 
-- Cuenta de AWS con permisos para gestionar SES.
-- El dominio debe estar verificado en SES.
-- En caso de usar plantillas, los datos necesarios para definirlas deben estar disponibles.
+- An AWS account with permissions to manage SES.
+- The domain must be verified in SES.
+- If using templates, the necessary data to define them should be available.
 
 ### Usage
 
-Para utilizar este módulo, puedes incluir el siguiente bloque de código en tu archivo de configuración de Terraform:
+To use this module, include the following block of code in your Terraform configuration file:
 
 ```hcl
 module "ses" {
   source = "github.com/jreynaga77/ueno-ses"  # Verifica que la URL del repositorio esté correcta
   
-  domain_name        = "example2.com"       # Nombre del dominio que deseas configurar en SES
-  enable_domain      = true                 # Habilitar la configuración del dominio en SES
-  enable_templates   = true                 # Habilitar las plantillas de correo electrónico
-  template_name      = "example-template"   # Nombre de la plantilla
-  template_html      = "<html><body><h1>Hello</h1></body></html>"  # Parte HTML de la plantilla
-  template_text      = "Hello"              # Parte de texto de la plantilla
-  template_subject   = "Test Email Subject" # Asunto de la plantilla
+  domain_name        = "example2.com"        
+  enable_domain      = true                 
+  enable_templates   = true                
+  template_name      = "example-template"   
+  template_html      = "<html><body><h1>Hello</h1></body></html>"  
+  template_text      = "Hello"              
+  template_subject   = "Test Email Subject" 
 }
 
-# Si necesitas crear un output para verificar el estado de la configuración, lo puedes agregar aquí
 output "ses_domain_identity_arn" {
   value = module.ses.ses_domain_identity_arn
 }

@@ -1,4 +1,7 @@
-# Configuración de SES para dominios
+/*----------------------------------------------------------------------*/
+/* S3 bucket | Main resource                                            */
+/*----------------------------------------------------------------------*/
+
 resource "aws_ses_domain_identity" "domain" {
   count  = var.enable_domain ? 1 : 0
   domain = var.domain_name
@@ -9,13 +12,11 @@ resource "aws_ses_domain_dkim" "dkim" {
   domain = aws_ses_domain_identity.domain[0].domain
 }
 
-# Configuración de direcciones de correo electrónico
 resource "aws_ses_email_identity" "emails" {
   for_each = toset(var.domains)
   email    = each.value
 }
 
-# Configuración de plantillas de correo
 resource "aws_ses_template" "template" {
   count          = var.enable_templates ? 1 : 0
   name           = var.template_name
