@@ -11,12 +11,13 @@ output "email_identities" {
 }
 
 output "template_name" {
-  value = aws_ses_template.template[0].name
+  value = length(aws_ses_template.template) > 0 ? aws_ses_template.template[0].name : null
 }
 
 output "templates" {
-  value = [for t in aws_ses_template.templates : t.name]
+  value = length(aws_ses_template.templates) > 0 ? [for t in aws_ses_template.templates : t.name] : []
 }
+
 
 output "sns_topic_arn" {
   description = "ARN del SNS Topic creado"
