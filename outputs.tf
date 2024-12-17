@@ -1,13 +1,13 @@
 output "ses_domain_identity_arn" {
-  value = aws_ses_domain_identity.domain[0].arn
+  value = length(aws_ses_domain_identity.domain) > 0 ? aws_ses_domain_identity.domain[0].arn : null
 }
 
 output "dkim_tokens" {
-  value = aws_ses_domain_dkim.dkim[0].dkim_tokens
+  value = length(aws_ses_domain_dkim.dkim) > 0 ? aws_ses_domain_dkim.dkim[0].dkim_tokens : []
 }
 
 output "email_identities" {
-  value = [for email in aws_ses_email_identity.emails : email.email]
+  value = length(aws_ses_email_identity.emails) > 0 ? [for email in aws_ses_email_identity.emails : email.email] : []
 }
 
 output "template_name" {
@@ -20,11 +20,9 @@ output "templates" {
 
 
 output "sns_topic_arn" {
-  description = "ARN del SNS Topic creado"
-  value       = aws_sns_topic.ses_feedback[0].arn
+  value = length(aws_sns_topic.ses_feedback) > 0 ? aws_sns_topic.ses_feedback[0].arn : null
 }
 
 output "sns_topic_name" {
-  description = "Nombre del SNS Topic creado"
-  value       = aws_sns_topic.ses_feedback[0].name
+  value = length(aws_sns_topic.ses_feedback) > 0 ? aws_sns_topic.ses_feedback[0].name : null
 }
