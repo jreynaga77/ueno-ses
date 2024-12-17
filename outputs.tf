@@ -17,3 +17,13 @@ output "template_name" {
 output "templates" {
   value = [for t in aws_ses_template.templates : t.name]
 }
+
+output "sns_topic_arn" {
+  description = "ARN del SNS Topic creado"
+  value       = aws_sns_topic.ses_feedback[0].arn
+}
+
+output "sns_topic_name" {
+  description = "Nombre del SNS Topic creado"
+  value       = aws_sns_topic.ses_feedback[0].name
+}
