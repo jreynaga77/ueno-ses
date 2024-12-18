@@ -60,15 +60,3 @@ variable "templates" {
   description = "Map of email templates for SES configuration"
   default     = {}
 }
-
-variable "sns_topic_name" {
-  description = "Nombre personalizado para el SNS Topic (opcional)"
-  type        = string
-  default     = null
-}
-
-variable "sns_subscriptions" {
-  description = "Lista de correos electrónicos a suscribir al SNS Topic"
-  type        = list(string)
-  default     = []
-}

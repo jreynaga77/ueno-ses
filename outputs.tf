@@ -19,10 +19,3 @@ output "templates" {
 }
 
 
-output "sns_topic_arn" {
-  value = length(aws_sns_topic.ses_feedback) > 0 ? aws_sns_topic.ses_feedback[0].arn : null
-}
-
-output "sns_topic_name" {
-  value = length(aws_sns_topic.ses_feedback) > 0 ? aws_sns_topic.ses_feedback[0].name : null
-}

@@ -32,15 +32,3 @@ resource "aws_ses_template" "templates" {
   text     = each.value.text_part
   subject  = each.value.subject_part
 }
-
-resource "aws_sns_topic" "ses_feedback" {
-  count = var.enable_domain ? 1 : 0
-  name  = var.sns_topic_name != null ? var.sns_topic_name : "${var.domain_name}-ses-feedback"
-}
-
-resource "aws_sns_topic_subscription" "email_subscriptions" {
-  count     = var.enable_domain && length(var.sns_subscriptions) > 0 ? length(var.sns_subscriptions) : 0
-  topic_arn = aws_sns_topic.ses_feedback[0].arn
-  protocol  = "email"
-  endpoint  = var.sns_subscriptions[count.index]
-}
