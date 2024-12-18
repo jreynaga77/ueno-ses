@@ -1,62 +1,56 @@
-variable "domain_name" {
+# Ambiente (dev, prod, etc.)
+variable "environment" {
+  description = "El entorno de despliegue (dev o prod)"
   type        = string
-  description = "Domain name to configure in SES"
 }
 
+# Lista de correos electrónicos para verificar
+variable "email_addresses" {
+  description = "Lista de correos electrónicos a verificar en SES"
+  type        = list(string)
+  default     = []
+}
+
+# Dominio SES (solo para prod)
 variable "enable_domain" {
-  type        = bool
-  default     = true
-  description = "Enable SES domain configuration"
-}
-
-variable "enable_templates" {
+  description = "Flag para habilitar o deshabilitar la verificación de dominio"
   type        = bool
   default     = false
-  description = "Enable email templates in SES"
+}
+
+variable "domain_name" {
+  description = "Nombre del dominio SES a verificar (solo para prod)"
+  type        = string
+  default     = null
+}
+
+# Plantillas (solo para prod)
+variable "enable_templates" {
+  description = "Flag para habilitar o deshabilitar plantillas SES"
+  type        = bool
+  default     = false
 }
 
 variable "template_name" {
+  description = "Nombre de la plantilla SES"
   type        = string
-  description = "Name of the email template"
   default     = null
 }
 
 variable "template_html" {
+  description = "Contenido HTML de la plantilla SES"
   type        = string
-  description = "HTML part of the template"
   default     = null
 }
 
 variable "template_text" {
+  description = "Contenido de texto plano de la plantilla SES"
   type        = string
-  description = "Text part of the template"
   default     = null
 }
 
 variable "template_subject" {
+  description = "Asunto de la plantilla SES"
   type        = string
-  description = "Subject of the email template"
   default     = null
-}
-
-variable "domains" {
-  type        = list(string)
-  description = "List of domains to configure in SES"
-  default     = []
-}
-
-variable "emails" {
-  type        = list(string)
-  description = "List of email addresses to configure in SES"
-  default     = []
-}
-
-variable "templates" {
-  type = map(object({
-    html_part    = string
-    text_part    = string
-    subject_part = string
-  }))
-  description = "Map of email templates for SES configuration"
-  default     = {}
 }
