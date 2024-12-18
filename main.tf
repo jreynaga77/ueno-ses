@@ -4,9 +4,9 @@ resource "aws_ses_email_identity" "emails" {
   email    = each.value
 }
 
-# Verificación del dominio SES (solo prod)
+# Si estás utilizando la variable 'environment' en alguna condición, como por ejemplo:
 resource "aws_ses_domain_identity" "domain" {
-  count  = var.enable_domain ? 1 : 0
+  count  = var.environment == "prod" && var.enable_domain ? 1 : 0
   domain = var.domain_name
 }
 
