@@ -1,10 +1,3 @@
-# Ambiente (dev, prod, etc.)
-variable "environment" {
-  description = "El entorno de despliegue (dev o prod)"
-  type        = string
-  default     = "dev"
-}
-
 # Lista de correos electrónicos para verificar
 variable "email_addresses" {
   description = "Lista de correos electrónicos a verificar en SES"
