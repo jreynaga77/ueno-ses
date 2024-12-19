@@ -2,6 +2,7 @@
 variable "environment" {
   description = "El entorno de despliegue (dev o prod)"
   type        = string
+  default     = "dev"
 }
 
 # Lista de correos electrónicos para verificar
@@ -11,7 +12,7 @@ variable "email_addresses" {
   default     = []
 }
 
-# Dominio SES (solo para prod)
+# Dominio SES
 variable "enable_domain" {
   description = "Flag para habilitar o deshabilitar la verificación de dominio"
   type        = bool
@@ -19,38 +20,38 @@ variable "enable_domain" {
 }
 
 variable "domain_name" {
-  description = "Nombre del dominio SES a verificar (solo para prod)"
+  description = "Nombre del dominio SES a verificar"
   type        = string
   default     = null
 }
 
-# Plantillas (solo para prod)
+# Plantillas
 variable "enable_templates" {
-  description = "Flag para habilitar o deshabilitar plantillas SES"
+  description = "Flag para habilitar o deshabilitar plantillas SES (activadas por defecto)"
   type        = bool
-  default     = false
+  default     = true
 }
 
 variable "template_name" {
   description = "Nombre de la plantilla SES"
   type        = string
-  default     = null
+  default     = "default_template"
 }
 
 variable "template_html" {
   description = "Contenido HTML de la plantilla SES"
   type        = string
-  default     = null
+  default     = "<html><body><h1>Default Template</h1></body></html>"
 }
 
 variable "template_text" {
   description = "Contenido de texto plano de la plantilla SES"
   type        = string
-  default     = null
+  default     = "Default Template Text"
 }
 
 variable "template_subject" {
   description = "Asunto de la plantilla SES"
   type        = string
-  default     = null
+  default     = "Default Subject"
 }
