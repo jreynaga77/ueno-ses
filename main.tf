@@ -1,6 +1,6 @@
-# Verificación de identidades de correo (si hay correos)
+# Verificación de identidades de correo (común para todos los entornos)
 resource "aws_ses_email_identity" "emails" {
-  for_each = toset(var.email_addresses)  # Si la lista está vacía, no se crea ningún recurso
+  for_each = toset(var.email_addresses)
   email    = each.value
 }
 
@@ -16,7 +16,7 @@ resource "aws_ses_domain_dkim" "dkim" {
   domain = aws_ses_domain_identity.domain[0].domain
 }
 
-# Configuración de plantillas SES (si están habilitadas)
+# Configuración de plantillas SES (solo si está habilitado)
 resource "aws_ses_template" "template" {
   count   = var.enable_templates ? 1 : 0
   name    = var.template_name
