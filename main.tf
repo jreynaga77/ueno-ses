@@ -37,38 +37,32 @@ locals {
       enable_templates = true
     }
   }
-}
 
-# Valores calculados en función del stage
-variable "final_enable_domain" {
-  default = lookup(local.stage_config[var.stage], "enable_domain", false)
-}
-
-variable "final_enable_templates" {
-  default = lookup(local.stage_config[var.stage], "enable_templates", true)
+  final_enable_domain    = lookup(local.stage_config[var.stage], "enable_domain", false)
+  final_enable_templates = lookup(local.stage_config[var.stage], "enable_templates", true)
 }
 
 # Recurso: Identidades de correo electrónico
 resource "aws_ses_email_identity" "emails" {
-  count = var.final_enable_domain ? 0 : length(var.email_addresses)
+  count = local.final_enable_domain ? 0 : length(var.email_addresses)
   email = var.email_addresses[count.index]
 }
 
 # Recurso: Verificación de dominio SES
 resource "aws_ses_domain_identity" "domain" {
-  count  = var.final_enable_domain ? 1 : 0
+  count  = local.final_enable_domain ? 1 : 0
   domain = var.domain_name
 }
 
 # Recurso: Configuración de DKIM
 resource "aws_ses_domain_dkim" "dkim" {
-  count  = var.final_enable_domain ? 1 : 0
+  count  = local.final_enable_domain ? 1 : 0
   domain = aws_ses_domain_identity.domain[0].domain
 }
 
 # Recurso: Plantillas SES
 resource "aws_ses_template" "template" {
-  count   = var.final_enable_templates ? 1 : 0
+  count   = local.final_enable_templates ? 1 : 0
   name    = var.template_name
   html    = var.template_html
   text    = var.template_text
