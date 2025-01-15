@@ -65,10 +65,19 @@ resource "aws_ses_domain_dkim" "dkim" {
 }
 
 
+# resource "aws_ses_template" "template" {
+#   count   = local.final_enable_templates ? 1 : 0
+#   name    = var.template_name
+#   html    = var.template_html
+#   text    = var.template_text
+#   subject = var.template_subject
+# }
+
 resource "aws_ses_template" "template" {
-  count   = local.final_enable_templates ? 1 : 0
-  name    = var.template_name
-  html    = var.template_html
-  text    = var.template_text
-  subject = var.template_subject
+  for_each = { for template in var.templates : template.name => template }
+
+  name    = each.value.name
+  html    = each.value.html
+  text    = each.value.text
+  subject = each.value.subject
 }

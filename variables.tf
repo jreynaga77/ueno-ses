@@ -57,27 +57,27 @@
 # }
 
 
-# Stage del entorno (dev, stg, prod)
+
 variable "stage" {
   description = "Stage del entorno (dev, stg, prod)"
   type        = string
 }
 
-# Lista de correos electrónicos para verificar
+
 variable "email_addresses" {
   description = "Lista de correos electrónicos a verificar en SES"
   type        = list(string)
   default     = []
 }
 
-# Dominio SES
+
 variable "domain_name" {
   description = "Nombre del dominio SES a verificar"
   type        = string
   default     = null
 }
 
-# Plantillas SES
+
 variable "template_name" {
   description = "Nombre de la plantilla SES"
   type        = string
@@ -100,4 +100,15 @@ variable "template_subject" {
   description = "Asunto de la plantilla SES"
   type        = string
   default     = "Default Subject"
+}
+
+variable "templates" {
+  description = "List of SES email templates"
+  type = list(object({
+    name    = string
+    html    = string
+    text    = string
+    subject = string
+  }))
+  default = []
 }
