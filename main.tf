@@ -74,7 +74,7 @@ resource "aws_ses_domain_dkim" "dkim" {
 # }
 
 resource "aws_ses_template" "template" {
-  for_each = { for template in var.templates : template.name => template }
+  for_each = { for idx, template in var.template_name : template.name => template }
 
   name    = each.value.name
   html    = each.value.html

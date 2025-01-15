@@ -102,8 +102,20 @@ variable "template_subject" {
   default     = "Default Subject"
 }
 
-variable "templates" {
-  description = "List of SES email templates"
+# variable "templates" {
+#   description = "List of SES email templates"
+#   type = list(object({
+#     name    = string
+#     html    = string
+#     text    = string
+#     subject = string
+#   }))
+#   default = []
+# }
+
+
+variable "template_name" {
+  description = "List of SES template names and their respective content."
   type = list(object({
     name    = string
     html    = string
