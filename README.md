@@ -74,7 +74,7 @@ This section explains the structure and elements that represent the artifacts of
 | email_addresses     | `list(string)` | no | A list of email addresses to verify in SES. Default is an empty list. |
 | domain_name         | `string` | no | The domain name to configure in SES. Default is `null`. |
 | template_name       | `string` | no | The name of the SES email template. Default is "default_template". |
-| template_html       | `string` | no | The HTML content of the SES email template. Default is ""<html><body><h1>Default Template</h1></body></html>"". |
+| template_html       | `string` | no | The HTML content of the SES email template. Default is "-<html><body><h1>Default Template</h1></body></html>-". |
 | template_text       | `string` | no | The plain text content of the SES email template. Default is "Default Template Text". |
 | template_subject    | `string` | no | The subject of the SES email template. Default is "Default Subject". |
 
