@@ -78,11 +78,11 @@ variable "domain_name" {
 }
 
 
-variable "template_name" {
-  description = "Nombre de la plantilla SES"
-  type        = string
-  default     = "default_template"
-}
+# variable "template_name" {
+#   description = "Nombre de la plantilla SES"
+#   type        = string
+#   default     = "default_template"
+# }
 
 variable "template_html" {
   description = "Contenido HTML de la plantilla SES"
