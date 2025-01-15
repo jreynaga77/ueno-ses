@@ -34,7 +34,8 @@ output "dkim_tokens" {
   value       = length(aws_ses_domain_dkim.dkim) > 0 ? aws_ses_domain_dkim.dkim[0].dkim_tokens : []
 }
 
-output "template_name" {
+output "template_names" {
   description = "Nombre de la plantilla SES creada"
   value       = length(aws_ses_template.template) > 0 ? aws_ses_template.template[0].name : null
 }
+
