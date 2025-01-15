@@ -36,7 +36,7 @@ output "dkim_tokens" {
 
 output "template_names" {
   description = "List of SES email template names."
-  value = [for template in aws_ses_template.template : template.value.name]
+  value = [for template in aws_ses_template.template : template.name]
 }
 
 
